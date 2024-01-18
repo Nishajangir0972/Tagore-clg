@@ -1,56 +1,57 @@
 import React from 'react'
 import '../AdminRecord/AdminRecord.css'
 import Container from 'react-bootstrap/Container';
-import Student from '../Image/cap.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState ,useContext} from 'react';
+import { useState, useContext ,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { context } from '../../App';
 
 
-
 function AdminRecord() {
-    const {serverLink} = useContext(context)
-    const [Firstname, setFirstname] = useState()
-    const [Lastname, setLastname] = useState()
-    const [Dob, setDob] = useState()
-    const [Phoneno, setPhoneno] = useState()
-    const [Fathername, setFathername] = useState()
-    const [Mothername, setMothername] = useState()
-    const [Email, setEmail] = useState()
-    const [Qualification, setQualification] = useState()
-    const [Subject, setSubject] = useState()
-    const [Photo, setPhoto] = useState()
-    const [Idproof, setIdproof] = useState()
-    const [Signature, setSignature] = useState()
-    const [Salary, setSalary] = useState()
-    const [Designation, setDesignation] = useState()
-    const [LocalAddress, setLocalAddress] = useState()
-    const [PermanentAddress, setPermanentAddress] = useState()
-    const [City, setCity] = useState()
-    const [State, setState] = useState()
-    const [PinCode, setPinCode] = useState()
-    const [Time, setTime] = useState()
+    const { serverLink } = useContext(context)
+    const [Firstname, setFirstname] = useState('')
+    const [Lastname, setLastname] = useState('')
+    const [Dob, setDob] = useState('')
+    const [Phoneno, setPhoneno] = useState('')
+    const [Fathername, setFathername] = useState('')
+    const [Mothername, setMothername] = useState('')
+    const [Email, setEmail] = useState('')
+    const [Qualification, setQualification] = useState('')
+    const [Subject, setSubject] = useState('')
+    const [Photo, setPhoto] = useState('')
+    const [Idproof, setIdproof] = useState('')
+    const [Signature, setSignature] = useState('')
+    const [Salary, setSalary] = useState('')
+    const [Designation, setDesignation] = useState('')
+    const [LocalAddress, setLocalAddress] = useState('')
+    const [PermanentAddress, setPermanentAddress] = useState('')
+    const [City, setCity] = useState('')
+    const [State, setState] = useState('')
+    const [PinCode, setPinCode] = useState('')
+    const [Time, setTime] = useState('')
+    const [DataAdded, setDataAdded] = useState(localStorage.getItem('DataAdded') === 'true' || false);
     const [validated, setValidated] = useState(false);
 
 
-
+    useEffect(() => {
+        if (DataAdded) {
+            localStorage.setItem('DataAdded', 'true');
+        }
+    }, [DataAdded]);
 
     const AdminDetails = async () => {
-
         const formData = new FormData();
         formData.append("Firstname", Firstname);
         formData.append("Lastname", Lastname);
         formData.append("Dob", Dob);
         formData.append("Phoneno", Phoneno);
-        formData.append("Fathername",Fathername);
+        formData.append("Fathername", Fathername);
         formData.append("Mothername", Mothername);
-        formData.append("Email",Email );
+        formData.append("Email", Email);
         formData.append("Qualification", Qualification);
         formData.append("Subject", Subject);
         formData.append("Photo", Photo);
@@ -65,24 +66,27 @@ function AdminRecord() {
         formData.append("PinCode", PinCode);
         formData.append("Time", Time);
 
+        
 
-        let result = await axios.post(`${serverLink}/EmployeeRecord/EmployeeRecordadd`, formData,{
-            headers:{
-                'Content-Type' : 'multipart/form-data'
+        let result = await axios.post(`${serverLink}/EmployeeRecord/EmployeeRecordadd`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
-        })
-        if(!Firstname ||!Lastname || !Dob || !Fathername ||!Phoneno || !Email || !Mothername || !Qualification ||!Subject ||!Photo ||!Idproof ||!Signature ||!Salary ||!Designation ||!LocalAddress ||!PermanentAddress ||!City || !State ||!PinCode ||!Time){
+        },
+        )
+        result = result.data
+
+        if (!Firstname || !Lastname || !Dob || !Fathername || !Phoneno || !Email || !Mothername || !Qualification || !Subject || !Photo || !Idproof || !Signature || !Salary || !Designation || !LocalAddress || !PermanentAddress || !City || !State || !PinCode || !Time) {
             alert("Please fill in all the fields")
             return;
         }
-        else{
+        else {
             alert("Your data has been added")
-            
+            setDataAdded(true)
+
         }
+
     }
-
-
-
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -100,8 +104,11 @@ function AdminRecord() {
             <div className="student-form">
                 <h2>EMPLOYEE FORM</h2>
                 <Container>
-
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}  encType='multipart/form-data'>
+                    {DataAdded  ? (
+                        <div className='AddData'>
+                            <p>Your data has been added successfully !</p>
+                        </div>
+                    ) : (<Form noValidate validated={validated} onSubmit={handleSubmit} encType='multipart/form-data'>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4" controlId="validationCustom01">
                                 <Form.Label className='emplo'>First name :</Form.Label>
@@ -111,9 +118,8 @@ function AdminRecord() {
                                     placeholder="First name"
                                     value={Firstname}
                                     onChange={(e) => setFirstname(e.target.value)}
-                                // defaultValue="Mark"
                                 />
-                                {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+                               
                             </Form.Group>
                             <Form.Group as={Col} md="4" controlId="validationCustom02">
                                 <Form.Label className='emplo'>Last name :</Form.Label>
@@ -318,7 +324,8 @@ function AdminRecord() {
                                 AdminDetails()
                             }}
                         >Submit form</Button>
-                    </Form>
+                    </Form>)}
+
                 </Container>
             </div>
         </>

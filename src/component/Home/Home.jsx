@@ -26,7 +26,8 @@ import 'aos/dist/aos.css';
 function Home() {
   const [validated, setValidated] = useState(false);
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 2000,
+    once:true });
 
   })
 

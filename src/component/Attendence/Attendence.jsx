@@ -3,19 +3,40 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import '../Result/result.css';
+import '../Attendence/Attendence.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { context } from '../../App';
+import axios from 'axios';
 
 
-function Result() {
-  const [selectedCourse, setSelectedCourse] = useState('');
-  const [selectedSemester, setSelectedSemester] = useState('');
- 
+
+function Attendence() {
+  const { serverLink } = useContext(context)
+
+  const [selectedClass, setSelectedClass] = useState('');
+  const [AllStudents, setAllStudents] = useState([])
+
+
+
+  useEffect(() => {
+    AllData()
+  }, [])
+
+  const AllData = async () => {
+    try {
+      let result = await axios.get(`${serverLink}/StdRecord/ShowStudentRecord/`)
+      result = result.data
+      setAllStudents(result)
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
   return (
     <>
       <div className='result-box'>
-        <h1>STUDENT'S RESULT</h1>
+        <h1>STUDENT'S ATTENDENCE</h1>
 
         <div className='select'>
 
@@ -24,11 +45,11 @@ function Result() {
               <Col className='drop-col' lg={2}>
               </Col>
               <Col className='drop-col' lg={4}>
-                <Form.Group as={Col} md="5">
+                <Form.Group as={Col} md="4">
                   <Form.Label className='std'>Select Course</Form.Label>
                   <Form.Select md="4" aria-label="Default select example"
-                    value={selectedCourse}
-                    onChange={(e) => setSelectedCourse(e.target.value)}
+                    value={selectedClass}
+                    onChange={(e) => setSelectedClass(e.target.value)}
                   >
                     <option >Course</option>
                     <option value="B.A-1st">B.A-1st</option>
@@ -61,31 +82,11 @@ function Result() {
                 </Form.Group>
 
               </Col>
-              <Col className='drop-col' lg={4}>
 
-                <Form.Group as={Col} md="5">
-                  <Form.Label className='std'>Select Semester</Form.Label>
-                  <Form.Select md="4" aria-label="Default select example"
-                    value={selectedSemester}
-                    onChange={(e) => setSelectedSemester(e.target.value)}
-                  >
-                    <option >Course</option>
-                    <option value="Semester-1st">Semester-1st</option>
-                    <option value="Semester-2nd">Semester-2nd</option>
-                    <option value="Semester-3rd">Semester-3rd</option>
-
-
-                  </Form.Select>
-                </Form.Group>
-
-              </Col>
               <Col className='drop-col' lg={2}>
               </Col>
             </Row>
           </Container>
-
-
-
 
 
         </div>
@@ -95,10 +96,10 @@ function Result() {
               <Col className='opn-col' lg={4}>
               </Col>
               <Col className='opn-col' lg={4}>
-              <button className='open'>
-              <Link to={`/Marks/${selectedCourse}/${selectedSemester}`}> SUBMIT </Link>
+                <button className='open'>
+                  {<Link to={`/StdAttendence/${selectedClass}`}>Submit</Link>}
                 </button>
-               
+
               </Col>
               <Col className='opn-col' lg={4}>
               </Col>
@@ -111,4 +112,8 @@ function Result() {
   )
 }
 
-export default Result
+export default Attendence
+
+
+
+

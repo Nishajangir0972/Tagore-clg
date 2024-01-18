@@ -2,7 +2,7 @@ import React from 'react'
 import '../StudentRecord/StudentRecord.css'
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState , useContext } from 'react';
+import { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -12,25 +12,26 @@ import { context } from '../../App';
 
 
 function StudentRecord() {
-    const {serverLink} = useContext(context)
-    const [Firstname, setFirstname] = useState()
-    const [Lastname, setLastname] = useState()
-    const [Dob, setDob] = useState()
-    const [Phone, setPhone] = useState()
-    const [Fathername, setFathername] = useState()
-    const [Mothername, setMothername] = useState()
-    const [Email, setEmail] = useState()
-    const [Course, setCourse] = useState()
-    const [Photo, setPhoto] = useState()
-    const [Gender, setGender] = useState()
-    const [ParentNo, setParentNo] = useState()
-    const [Idproof, setIdproof] = useState()
-    const [LocalAddress, setLocalAddress] = useState()
-    const [PermanentAddress, setPermanentAddress] = useState()
-    const [RegistrationDate, setRegistrationDate] = useState()
-    const [City, setCity] = useState()
-    const [State, setState] = useState()
-    const [PinCode, setPinCode] = useState()
+    const { serverLink } = useContext(context)
+    const [Firstname, setFirstname] = useState('')
+    const [Lastname, setLastname] = useState('')
+    const [Dob, setDob] = useState('')
+    const [Phone, setPhone] = useState('')
+    const [Fathername, setFathername] = useState('')
+    const [Mothername, setMothername] = useState('')
+    const [Email, setEmail] = useState('')
+    const [Course, setCourse] = useState('')
+    const [Photo, setPhoto] = useState('')
+    const [Gender, setGender] = useState('')
+    const [ParentNo, setParentNo] = useState('')
+    const [Idproof, setIdproof] = useState('')
+    const [LocalAddress, setLocalAddress] = useState('')
+    const [PermanentAddress, setPermanentAddress] = useState('')
+    const [RegistrationDate, setRegistrationDate] = useState('')
+    const [City, setCity] = useState('')
+    const [State, setState] = useState('')
+    const [PinCode, setPinCode] = useState('')
+    const [DataAdded, setDataAdded] = useState(false)
     const [validated, setValidated] = useState(false);
 
     const StudentDetails = async () => {
@@ -55,52 +56,41 @@ function StudentRecord() {
         formData.append("PinCode", PinCode);
 
 
-    let result = await axios.post(`${serverLink}/StdRecord/StudentRecordadd`, formData,{
-        headers:{
-            'Content-Type' : 'multipart/form-data'
+        let result = await axios.post(`${serverLink}/StdRecord/StudentRecordadd`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        },
+        )
+        // result = result.data
+       
+        if (!Firstname || !Lastname || !Dob || !Fathername || !Phone || !Email || !Mothername || !ParentNo || !Course || !Photo || !Idproof || !RegistrationDate || !Gender || !LocalAddress || !PermanentAddress || !City || !State || !PinCode) {
+            alert("Please fill in all the fields")
+            return;
         }
-    })
-   
-    if(!Firstname ||!Lastname || !Dob || !Fathername ||!Phone || !Email || !Mothername || !ParentNo ||!Course ||!Photo ||!Idproof ||!RegistrationDate ||!Gender  ||!LocalAddress ||!PermanentAddress ||!City || !State ||!PinCode ){
-        alert("Please fill in all the fields")
-        return;
+        else if(result.data){
+            alert("Your data has been added")
+            setDataAdded(true)
+            
+        }
+        else{
+            alert("Check once again")
+        }
+
+       
+
     }
-    else{
-        alert("Your data has been added")
-        
-    }
-    if (result) {
-        alert("Your Data has been added")
-        setFirstname('')
-        setLastname('')
-        setFathername('')
-        setMothername('')
-        setEmail('')
-        setDob('')
-        setPhone('')
-        setParentNo('')
-        setPhoto('')
-        setRegistrationDate('')
-        setLocalAddress('')
-        setPermanentAddress('')
-        setIdproof('')
-        setCourse('')
-        setGender('')
-        setState('')
-        setPinCode('')
-        setCity('')
-    }
-    
-}
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+        } else {
+            event.preventDefault(); 
+            setValidated(true);
+            StudentDetails();
         }
-
-        setValidated(true);
     };
 
 
@@ -109,8 +99,11 @@ function StudentRecord() {
             <div className="student-form">
                 <h2>STUDENT FORM</h2>
                 <Container>
-
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    {DataAdded ? (
+                        <div className='AddData'>
+                            <p>Your data has been Added successfully !</p>
+                        </div>
+                    ) : (<Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4" controlId="validationCustom01">
                                 <Form.Label className='std'>First name :</Form.Label>
@@ -208,15 +201,12 @@ function StudentRecord() {
 
                                     <option value="M.Sc-1st">M.Sc-1st</option>
                                     <option value="M.Sc-2nd">M.Sc-2nd</option>
-                                    <option value="M.Sc-3rd">M.Sc-3rd</option>
 
                                     <option value="M.A-1st">M.A-1st</option>
                                     <option value="M.A-2nd">M.A-2nd</option>
-                                    <option value="M.A-3rd">M.A-3rd</option>
 
                                     <option value="M.Com-1st">M.Com-1st</option>
                                     <option value="M.Com-2nd">M.Com-2nd</option>
-                                    <option value="M.Com-3rd">M.Com-3rd</option>
 
 
                                 </Form.Select>
@@ -340,7 +330,8 @@ function StudentRecord() {
                             e.preventDefault()
                             StudentDetails()
                         }}>Submit form</Button>
-                    </Form>
+                    </Form>)}
+
                 </Container>
             </div>
         </>

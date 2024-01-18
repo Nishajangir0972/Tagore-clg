@@ -1,13 +1,17 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from 'react-router-dom';
 import './MarksTable.css'
 
 function MarksTable() {
+  const {selectedCourse , selectedSemester} = useParams();
+
   return (
     <>
        <div className='semester'>
-        <h1>SEMESTER-1</h1>
+        <h1>{selectedSemester}</h1>
+        <h1>{selectedCourse}</h1>
        </div>
       <div className='table'>
       <Table striped bordered hover size="sm">

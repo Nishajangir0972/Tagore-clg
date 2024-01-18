@@ -38,6 +38,9 @@ import StdResultPage from './component/StdResultPage/StdResultPage.jsx'
 import ReceiveNotice from './component/ReceiveNotice/ReceiveNotice.jsx'
 import ReceivedComplaint from './component/ReceivedComplaint/ReceivedComplaint.jsx'
 import Result from './component/Result/Result.jsx'
+import MarksTable from './component/Std-Result/Marks-table/MarksTable.jsx'
+import Attendence from './component/Attendence/Attendence.jsx'
+import StdAttendence from './component/StdAttendence/StdAttendence.jsx'
 import './App.css'
 
 
@@ -76,7 +79,7 @@ function App() {
 
 
   useEffect(() => {
-    let data = localStorage.getItem("UserData")
+    let data = localStorage.getItem("userData")
 
     if (data) {
       data = JSON.parse(data)
@@ -133,7 +136,9 @@ function App() {
                   {/* <Route path='/StdDetails' element={<StudentDetails />} /> */}
                   <Route path='/ReceiveComplaint' element={<ReceivedComplaint />} />
                   <Route path='/Result' element={<Result />} />
-
+                  <Route path='/Marks/:selectedCourse/:selectedSemester' element={<MarksTable/>} />
+                  <Route path='/Attendence' element={<Attendence/>}/>
+                  <Route path='/StdAttendence/:selectedClass' element={<StdAttendence/>}/>
 
                 </Routes>
               </>

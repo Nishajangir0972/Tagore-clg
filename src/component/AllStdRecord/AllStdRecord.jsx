@@ -24,8 +24,6 @@ function AllStdRecord() {
         try {
             let result = await axios.get(`${serverLink}/StdRecord/ShowStudentRecord/`)
             result = result.data
-            // result = JSON.parse(result)
-            // console.log(result);
             setAllStudents(result)
         } catch (error) {
             console.log(error);

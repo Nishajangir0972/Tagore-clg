@@ -60,7 +60,6 @@ function Header() {
             <div className='second-navbar'>
               <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-
                   <div className="name">
                     <div className="hin">
                       <h1>Hii!!!</h1>

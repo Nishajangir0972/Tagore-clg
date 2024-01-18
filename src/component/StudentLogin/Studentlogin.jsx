@@ -95,8 +95,8 @@ function FormExample() {
                                  placeholder="Enter your Password" 
                                 value={password}
                                 onChange={(e)=> setPassword(e.target.value)}
-                               
-                                required />
+                                required 
+                                />
                                  <div className="eyeicon" onClick={()=>{setVisible(!visible)}}>
                                 {visible ? <EyeOutlined/>:<EyeInvisibleOutlined/> }
                               </div>
