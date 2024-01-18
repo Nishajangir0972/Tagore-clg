@@ -2,14 +2,37 @@ import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../StdAttendence/StdAttendence.css'
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { useState ,useEffect } from 'react';
+import axios from 'axios';
+import { context } from '../../App';
+
 
 function StdAttendence() {
+  const { serverLink } = useContext(context)
 const {selectedClass} = useParams();
+const [AllStudents, setAllStudents] = useState([])
+
+
+useEffect(() => {
+  AllData()
+}, [])
+
+const AllData = async () => {
+  let result = await axios.get(`${serverLink}/StdRecord/ShowStudentRecord/`)
+  result = result.data
+  setAllStudents(result)
+
+}
+
+const filteredStudents =
+selectedClass ? AllStudents?.filter((student) => student.Course === selectedClass ? student : null)
+  : AllStudents;
 
   return (
     <>
     <div className='CheckClass'>
-    <h1>Attendence Sheet</h1>
+    <h1>Attendance Sheet</h1>
       <h2>January-2024</h2>
     <h2>{selectedClass}</h2>
     </div>

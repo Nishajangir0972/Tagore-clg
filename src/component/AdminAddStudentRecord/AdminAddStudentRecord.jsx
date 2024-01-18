@@ -23,11 +23,11 @@ export default function AdminAddStudentRecord() {
               </Col>
               <Col className="lower" lg={3}>
                 <HowToRegIcon/>
-                <h2><Link to='/Attendence'>Attendence</Link></h2>
+                <h2><Link to='/Attendence'>Attendance</Link></h2>
               </Col>
               <Col className="lower" lg={3}>
                 <AssignmentIcon/>
-                <h2><Link to='/Result'>Results</Link></h2>
+                <h2><Link to='/Result'>Result</Link></h2>
               </Col>
               <Col className="lower" lg={2}>
               </Col>

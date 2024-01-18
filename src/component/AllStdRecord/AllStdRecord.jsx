@@ -70,15 +70,12 @@ function AllStdRecord() {
 
                                     <option value="M.Sc-1st">M.Sc-1st</option>
                                     <option value="M.Sc-2nd">M.Sc-2nd</option>
-                                    <option value="M.Sc-3rd">M.Sc-3rd</option>
 
                                     <option value="M.A-1st">M.A-1st</option>
                                     <option value="M.A-2nd">M.A-2nd</option>
-                                    <option value="M.A-3rd">M.A-3rd</option>
 
                                     <option value="M.Com-1st">M.Com-1st</option>
                                     <option value="M.Com-2nd">M.Com-2nd</option>
-                                    <option value="M.Com-3rd">M.Com-3rd</option>
 
 
                                 </Form.Select>

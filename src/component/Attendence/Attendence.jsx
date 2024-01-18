@@ -6,37 +6,15 @@ import Form from 'react-bootstrap/Form';
 import '../Attendence/Attendence.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { context } from '../../App';
-import axios from 'axios';
-
 
 
 function Attendence() {
-  const { serverLink } = useContext(context)
-
   const [selectedClass, setSelectedClass] = useState('');
-  const [AllStudents, setAllStudents] = useState([])
 
-
-
-  useEffect(() => {
-    AllData()
-  }, [])
-
-  const AllData = async () => {
-    try {
-      let result = await axios.get(`${serverLink}/StdRecord/ShowStudentRecord/`)
-      result = result.data
-      setAllStudents(result)
-    } catch (error) {
-      console.log(error);
-
-    }
-  }
   return (
     <>
       <div className='result-box'>
-        <h1>STUDENT'S ATTENDENCE</h1>
+        <h1>STUDENT'S ATTENDANCE</h1>
 
         <div className='select'>
 
