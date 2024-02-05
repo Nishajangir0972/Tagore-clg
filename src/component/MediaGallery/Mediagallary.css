@@ -13,10 +13,11 @@
  
 }
 
-.imagebox img{
+.mediaPhotos img{
   border-radius: 10px;
   margin-top: 10px;
-  
+  height: 200px;
+  width: 200px;
   box-shadow: 5px 5px 5px rgb(34, 34, 70);
 }
 .btn button{
@@ -25,7 +26,7 @@
  border-radius: 10px;
  border: none;
  text-align: center;
- height: auto50px;
+ height: auto 50px;
  width: 100px;
 
 }

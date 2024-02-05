@@ -10,7 +10,7 @@ import '../StudentComplaint-Box/StudentComplaintBox.css'
 function ComplaintBox() {
   const {serverLink} = useContext(context)
   const [Firstname, setFirstname] = useState('')
-  const [Fathername, setFathername] = useState('')
+  const [RollNo, setRollNo] = useState('')
   const [Email, setEmail] = useState('')
   const [Mobileno, setMobileno] = useState('')
   const [Complaint, setComplaint] = useState('')
@@ -20,7 +20,7 @@ function ComplaintBox() {
   const SendComplain = async () => {
     let result = await axios.post(`${serverLink}/Complaint/Student`, {
       Firstname: Firstname,
-      Fathersname: Fathername,
+      RollNo: RollNo,
       Email: Email,
       MobileNo: Mobileno,
       Complaint: Complaint
@@ -70,13 +70,13 @@ function ComplaintBox() {
 
           <Row className="mb-3">
             <Form.Group as={Col} md="8" controlId="validationCustom02">
-            <Form.Label>Father's name</Form.Label>
+            <Form.Label>Roll No</Form.Label>
               <Form.Control
                 required
                 type="text"
-                placeholder="Enter your Father's name"
-                value={Fathername}
-                onChange={(e)=>setFathername(e.target.value)}
+                placeholder="Enter your Roll No"
+                value={RollNo}
+                onChange={(e)=>setRollNo(e.target.value)}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>

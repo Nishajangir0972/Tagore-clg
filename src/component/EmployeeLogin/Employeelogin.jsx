@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { context } from '../../App';
-import {EyeInvisibleOutlined , EyeOutlined} from "@ant-design/icons"
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
 
 
 function FormExample() {
@@ -21,8 +21,8 @@ function FormExample() {
     const [validated, setValidated] = useState(false);
     const [userName, setUsername] = useState()
     const [password, setPassword] = useState()
-const [visible , setVisible] = useState(false)
-const [agreeTerms, setAgreeTerms] = useState(false);
+    const [visible, setVisible] = useState(false)
+    const [agreeTerms, setAgreeTerms] = useState(false);
 
 
     const AdminLogin = async () => {
@@ -37,7 +37,7 @@ const [agreeTerms, setAgreeTerms] = useState(false);
 
         if (result.UserName) {
             alert("Successful login")
-
+            console.log(result, "result is here");
             const setAdminData = () => {
                 localStorage.setItem("adminData", JSON.stringify(result))
             }
@@ -108,13 +108,13 @@ const [agreeTerms, setAgreeTerms] = useState(false);
                             <Form.Group as={Col} md="7" controlId="validationCustom02">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type={visible ? "text" : "password"}
-                                 placeholder="Enter your Password"
+                                    placeholder="Enter your Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required />
-                                    <div className="eyeicon1" onClick={()=>{setVisible(!visible)}}>
-                                        {visible ? <EyeOutlined/>:<EyeInvisibleOutlined/> }
-                          </div>
+                                <div className="eyeicon1" onClick={() => { setVisible(!visible) }}>
+                                    {visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                                </div>
                                 <Form.Control.Feedback type="invalid">
                                     Please provide a vaild password
                                 </Form.Control.Feedback>
@@ -128,7 +128,7 @@ const [agreeTerms, setAgreeTerms] = useState(false);
                                 required
                                 label="Agree to terms and conditions"
                                 checked={agreeTerms}
-                 onChange={() => setAgreeTerms(!agreeTerms)}
+                                onChange={() => setAgreeTerms(!agreeTerms)}
                                 feedback="You must agree before submitting."
                                 feedbackType="invalid"
                             />
@@ -139,13 +139,13 @@ const [agreeTerms, setAgreeTerms] = useState(false);
                                     e.preventDefault();
                                     if (agreeTerms) {
                                         AdminLogin();
-        
+
                                     } else {
                                         alert("Please agree to terms and conditions.");
                                     }
                                 }}
                                 disabled={!agreeTerms}
-                                >Submit</Button>
+                            >Submit</Button>
                         </div>
 
                     </div>

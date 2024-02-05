@@ -45,8 +45,17 @@ function FormExample() {
 
             })
             result = result.data
-            alert("Successfull Registration")
-            navigate("/adminlog")
+            // console.log(result);
+            if (result?.message === "Email already used") {
+                alert("Email already used please use a different email");
+            } 
+            else if (result?.message === "Username already used") {
+                alert("Username already in use please use a different username");
+            } 
+            else {
+                alert("Successfully Registered");
+                navigate("/adminlog");
+            }
         }
 
 

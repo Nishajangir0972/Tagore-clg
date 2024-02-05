@@ -44,43 +44,41 @@ function AdminRecord() {
     }, [DataAdded]);
 
     const AdminDetails = async () => {
-        const formData = new FormData();
-        formData.append("Firstname", Firstname);
-        formData.append("Lastname", Lastname);
-        formData.append("Dob", Dob);
-        formData.append("Phoneno", Phoneno);
-        formData.append("Fathername", Fathername);
-        formData.append("Mothername", Mothername);
-        formData.append("Email", Email);
-        formData.append("Qualification", Qualification);
-        formData.append("Subject", Subject);
-        formData.append("Photo", Photo);
-        formData.append("Idproof", Idproof);
-        formData.append("Signature", Signature);
-        formData.append("Salary", Salary);
-        formData.append("Designation", Designation);
-        formData.append("LocalAddress", LocalAddress);
-        formData.append("PermanentAddress", PermanentAddress);
-        formData.append("City", City);
-        formData.append("State", State);
-        formData.append("PinCode", PinCode);
-        formData.append("Time", Time);
-
-        
-
-        let result = await axios.post(`${serverLink}/EmployeeRecord/EmployeeRecordadd`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        },
-        )
-        result = result.data
-
         if (!Firstname || !Lastname || !Dob || !Fathername || !Phoneno || !Email || !Mothername || !Qualification || !Subject || !Photo || !Idproof || !Signature || !Salary || !Designation || !LocalAddress || !PermanentAddress || !City || !State || !PinCode || !Time) {
             alert("Please fill in all the fields")
             return;
         }
+        
         else {
+            const formData = new FormData();
+            formData.append("Firstname", Firstname);
+            formData.append("Lastname", Lastname);
+            formData.append("Dob", Dob);
+            formData.append("Phoneno", Phoneno);
+            formData.append("Fathername", Fathername);
+            formData.append("Mothername", Mothername);
+            formData.append("Email", Email);
+            formData.append("Qualification", Qualification);
+            formData.append("Subject", Subject);
+            formData.append("Photo", Photo);
+            formData.append("Idproof", Idproof);
+            formData.append("Signature", Signature);
+            formData.append("Salary", Salary);
+            formData.append("Designation", Designation);
+            formData.append("LocalAddress", LocalAddress);
+            formData.append("PermanentAddress", PermanentAddress);
+            formData.append("City", City);
+            formData.append("State", State);
+            formData.append("PinCode", PinCode);
+            formData.append("Time", Time);
+            
+            let result = await axios.post(`${serverLink}/EmployeeRecord/EmployeeRecordadd`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            },
+            )
+            result = result.data
             alert("Your data has been added")
             setDataAdded(true)
 

@@ -23,7 +23,7 @@ function FormExample() {
     const [phoneNo, setPhoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [emailCheck, setemailCheck] = useState('')
+    
 
 
     const StudentRegister = async () => {
@@ -32,7 +32,7 @@ function FormExample() {
             return;
         }
         else {
-            let result = await axios.post(`${ serverLink }/data/Register`, {
+            let result = await axios.post(`${serverLink}/data/Register`, {
                 Firstname: firstName,
                 Lastname: lastName,
                 Username: userName,
@@ -43,8 +43,16 @@ function FormExample() {
 
             })
             result = result.data
-            alert("Successfull Registration")
-            navigate("/stdlogin")
+           if (result?.message === "Email already used") {
+            alert("Email already used please use a different email");
+        } 
+        else if (result?.message === "Username already used") {
+            alert("Username already in use please use a different username");
+        } 
+        else {
+            alert("Successfully Registered");
+            navigate("/stdlogin");
+        }
         }
 
     }
@@ -103,8 +111,9 @@ function FormExample() {
                                 value={userName}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
+                            
                         </Form.Group>
-
+                       
                     </Row>
                     <Row className=" mb-3">
                         <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -142,13 +151,11 @@ function FormExample() {
                     </Row>
 
                     <Row className="mb-3">
-                            <Form.Group as={Col} md="4" controlId="validationCustom06">
+                        <Form.Group as={Col} md="4" controlId="validationCustom06">
                             <Form.Label className='emploreg'>Email</Form.Label>
                             <Form.Control type="text" placeholder="Enter your Email" required value={email}
                                 onChange={(e) => setEmail(e.target.value)} />
-                            <Form.Control.Feedback type="invalid">
-                                {/* Please provide a valid zip. */}
-                            </Form.Control.Feedback>
+                            
                         </Form.Group>
                         <Form.Group as={Col} md="4" controlId="validationCustom07">
                             <Form.Label>Password</Form.Label>

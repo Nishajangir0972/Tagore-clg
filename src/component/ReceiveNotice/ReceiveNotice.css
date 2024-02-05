@@ -3,8 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-.notice p {
+.notice-col.col-lg-3 {
     border: 2px solid black;
-    border-radius: 10px;
-    padding: 5px;
+    height: 200px;
 }

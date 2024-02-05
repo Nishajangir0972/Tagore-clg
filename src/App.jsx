@@ -136,7 +136,7 @@ function App() {
                   {/* <Route path='/StdDetails' element={<StudentDetails />} /> */}
                   <Route path='/ReceiveComplaint' element={<ReceivedComplaint />} />
                   <Route path='/Result' element={<Result />} />
-                  <Route path='/Marks/:selectedCourse/:selectedSemester' element={<MarksTable/>} />
+                  <Route path='/Marks/:selectedClass/:selectedSemester' element={<MarksTable/>} />
                   <Route path='/Attendence' element={<Attendence/>}/>
                   <Route path='/StdAttendence/:selectedClass' element={<StdAttendence/>}/>
 

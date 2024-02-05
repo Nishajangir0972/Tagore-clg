@@ -48,7 +48,6 @@ function ShowDetails() {
             required
             type="text"
             placeholder="First name"
-            defaultValue="Ankita"
           />
      
         </Form.Group>
@@ -58,16 +57,10 @@ function ShowDetails() {
             required
             type="text"
             placeholder="Last name"
-            defaultValue="Priya"
           />
      
         </Form.Group>
-
-
-      
       </Row>
-
-
       <Row className="mb-3">
 
 
@@ -77,7 +70,7 @@ function ShowDetails() {
             required
             type="text"
             placeholder="First name"
-            defaultValue="Bhagirath Mal Saini"
+            // defaultValue="Bhagirath Mal Saini"
           />
     
       
@@ -88,30 +81,22 @@ function ShowDetails() {
             required
             type="text"
             placeholder="Last name"
-            defaultValue="Sushila Devi"
+            // defaultValue="Sushila Devi"
           />
      
         </Form.Group>
-
-
-
-      
-
-
       </Row>
 
 
       
       <Row className="mb-3">
-
-
         <Form.Group as={Col} md="5" controlId="validationCustom01">
           <Form.Label>First name</Form.Label>
           <Form.Control
             required
             type="text"
             placeholder="First name"
-            defaultValue="Ankita"
+            // defaultValue="Ankita"
           />
      
         </Form.Group>
@@ -121,25 +106,13 @@ function ShowDetails() {
             required
             type="text"
             placeholder="Last name"
-            defaultValue="Priya"
+            // defaultValue="Priya"
           />
      
         </Form.Group>
-
-
-      
-      </Row>
-    
+      </Row>    
     </Form>
-
-
-
         </Container>
-      
-
-
-
-
       </div>
     </>
   

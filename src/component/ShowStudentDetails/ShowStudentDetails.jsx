@@ -31,10 +31,8 @@ function ShowStudentDetails() {
     return (
         <>
             <Container>
-
                 <Form >
                     <Row className="mb-3">
-
                         <Form.Group as={Col} md="4" className='images' >
                             <Form.Label className='stdshow'>Photo</Form.Label>
                             {ShowStudentDetail.Photo && ShowStudentDetail.Photo ? (
@@ -46,8 +44,7 @@ function ShowStudentDetails() {
                         <Form.Group as={Col} md="4" controlId="validationCustom01">
                             <Form.Label className='stdshow'>First name :</Form.Label>
                             <Form.Control
-
-                                value={ShowStudentDetail.Firstname} />
+                  value={ShowStudentDetail.Firstname} />
 
                         </Form.Group>
                         <Form.Group as={Col} md="4" controlId="validationCustom02">

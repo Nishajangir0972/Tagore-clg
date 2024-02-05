@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 
 function Result() {
-  const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedClass, setSelectedClass] = useState('');
   const [selectedSemester, setSelectedSemester] = useState('');
  
   return (
@@ -27,8 +27,8 @@ function Result() {
                 <Form.Group as={Col} md="5">
                   <Form.Label className='std'>Select Course</Form.Label>
                   <Form.Select md="4" aria-label="Default select example"
-                    value={selectedCourse}
-                    onChange={(e) => setSelectedCourse(e.target.value)}
+                    value={selectedClass}
+                    onChange={(e) => setSelectedClass(e.target.value)}
                   >
                     <option >Course</option>
                     <option value="B.A-1st">B.A-1st</option>
@@ -96,7 +96,7 @@ function Result() {
               </Col>
               <Col className='opn-col' lg={4}>
               <button className='open'>
-              <Link to={`/Marks/${selectedCourse}/${selectedSemester}`}> SUBMIT </Link>
+              <Link to={`/Marks/${selectedClass}/${selectedSemester}`}> SUBMIT </Link>
                 </button>
                
               </Col>
