@@ -3,12 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap'
 import { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
-// import FormGroup from 'react-bootstrap';
-// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { context } from '../../App';
 import axios from 'axios';
-// import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import '../ReceivedComplaint/ReceivedComplaint.css'
 
 
