@@ -37,7 +37,7 @@ function ReceivedComplaint() {
             <div className='ReciveComplain'>
 
               <Card className='complaint'>
-            <input type="checkbox" className='success' id='checkBox'/>
+            {/* <input type="checkbox" className='success' id='checkBox'/> */}
 
                 <Card.Body>
                   <Card.Text>Name: {Complain.Firstname}</Card.Text>
