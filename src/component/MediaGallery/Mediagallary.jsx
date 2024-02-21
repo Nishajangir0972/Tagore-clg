@@ -43,7 +43,7 @@ function ResponsiveExample() {
   const ShowPhoto = async () => {
     let result = await axios.get(`${serverLink}/Media/showMediaPhoto`)
     result = result.data
-    setshowMediaPhoto(result)
+    setshowMediaPhoto(result.reverse())
     // console.log(result);
   }
 
@@ -55,26 +55,24 @@ function ResponsiveExample() {
       </div>
       <hr />
       <Container>
-        {/* Stack the columns on mobile by making one full-width and the other half-width */}
-        {showMediaPhoto.map((ShowImg, index) => (
-          <div className='mediaPhotos' key={index}>
-            {ShowImg?.Photo?.filename && <img src={`${serverLink}/uploads/${ShowImg.Photo.filename}`} alt="" />}
-            
-          </div>
-        ))}
+        <Row>
+          {showMediaPhoto.map((showImg, index) => (
+            <Col lg={4} md={6} sm={12} key={index}>
+              <div className='mediaPhotos'>
+                {showImg?.Photo?.filename && <img src={`${serverLink}/uploads/${showImg.Photo.filename}`} alt="" />}
+              </div>
+            </Col>
+          ))}
+        </Row>
 
+
+        <div className='addPhoto'>
+        <label htmlFor="Photo">Photo :</label>
+        <input type="file"  onChange={(e) => setPhoto(e.target.files[0])}/>
+        
+      </div>
       </Container>
-
-      <Form.Group as={Col} >
-        <Form.Label className='media'>Photo</Form.Label>
-        <Form.Control
-          required
-          type="File"
-          onChange={(e) => setPhoto(e.target.files[0])}
-        >
-        </Form.Control>
-      </Form.Group>
-      <div className="btn">
+      <div className="Addbtn">
         <button onClick={(e) => {
           e.preventDefault()
           mediaPhoto()

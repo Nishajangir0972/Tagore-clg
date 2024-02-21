@@ -26,7 +26,13 @@ function ComplaintBox() {
       Complaint: Complaint
     })
     result= result.data
-    console.log(result);
+    // console.log(result);
+    alert("Your complaint has been send")
+    setFirstname('')
+    setRollNo('')
+    setEmail('')
+    setMobileno('')
+    setComplaint('')
   }
 
   
@@ -54,11 +60,11 @@ function ComplaintBox() {
 <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} md="8" controlId="validationCustom01">
-              <Form.Label>First name</Form.Label>
+              <Form.Label>Name </Form.Label>
               <Form.Control
                 required
                 type="text"
-                placeholder="First name"
+                placeholder="Enter your name"
                 value={Firstname}
                 onChange={(e)=>setFirstname(e.target.value)}
               />

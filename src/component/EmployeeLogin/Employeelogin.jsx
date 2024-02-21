@@ -44,16 +44,11 @@ function FormExample() {
             setAdminData()
 
             setAdminLoggedIn(true);
-
             // console.log(localStorage.getItem("adminData"));
-
-
             navigate(`/AdminPage/${result._id}`)
 
         }
         else {
-            // console.log(result)
-
             alert("Please Enter Correct Details")
         }
     }

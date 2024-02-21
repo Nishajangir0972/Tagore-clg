@@ -3,6 +3,7 @@ import '../StudentRecord/StudentRecord.css'
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useContext } from 'react';
+import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -33,6 +34,18 @@ function StudentRecord() {
     const [PinCode, setPinCode] = useState('')
     const [DataAdded, setDataAdded] = useState(false)
     const [validated, setValidated] = useState(false);
+
+
+    useEffect(() => {
+        const storedDataAdded = localStorage.getItem('DataAdded');
+        setDataAdded(storedDataAdded === 'true');
+    }, []);
+    
+    useEffect(() => {
+        if (DataAdded) {
+            localStorage.setItem('DataAdded', 'true');
+        }
+    }, [DataAdded]);
 
     const StudentDetails = async () => {
         const formData = new FormData();

@@ -33,10 +33,15 @@ function AdminRecord() {
     const [State, setState] = useState('')
     const [PinCode, setPinCode] = useState('')
     const [Time, setTime] = useState('')
-    const [DataAdded, setDataAdded] = useState(localStorage.getItem('DataAdded') === 'true' || false);
+    const [DataAdded, setDataAdded] = useState(false);
     const [validated, setValidated] = useState(false);
 
 
+    useEffect(() => {
+        const storedDataAdded = localStorage.getItem('DataAdded');
+        setDataAdded(storedDataAdded === 'true');
+    }, []);
+    
     useEffect(() => {
         if (DataAdded) {
             localStorage.setItem('DataAdded', 'true');

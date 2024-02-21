@@ -3,7 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-.notice-col.col-lg-3 {
-    border: 2px solid black;
+.notice-recieve img.card-img-top{
     height: 200px;
+}
+.notice-recieve {
+    margin: 5px;
+    text-align: center;
 }

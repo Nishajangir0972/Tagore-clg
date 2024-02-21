@@ -9,7 +9,7 @@
 .noticePage{
     margin: auto;
     /* text-align: center; */
-    width: 30%;
+    /* width: 30%; */
 }
 .sub{
     color: white;
@@ -21,7 +21,7 @@
     background-image:linear-gradient(rgba(0, 0, 0, 0.628) , rgba(0, 0, 0, 0.643) , rgba(0, 0, 0, 0.635)), url(../Image/Staff.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120vh;
+    height: 130vh;
 }
 
 .heder h2 {

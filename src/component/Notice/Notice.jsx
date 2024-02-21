@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import{ Row,Col,Container}from 'react-bootstrap';
 import '../Notice/Notice.css'
 import axios from "axios"
 import { context } from '../../App';
@@ -8,21 +9,38 @@ import { context } from '../../App';
 
 const NoticeForm = () => {
     const { serverLink } = useContext(context)
-    const [subject, setSubject] = useState('')
+    const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
-    const [Photo, setPhoto] = useState('')
+    const [Photo, setPhoto] = useState('');
+    const [noticeDate , setnoticeDate] = useState('')
 
 
+    useEffect(()=>{
+        const getDate = () =>{
+            const now = new Date();
+            const year = now.getFullYear();
+            let month = now.getMonth()+ 1
+            let day = now.getDate();
+
+            month = month < 10 ?'0' + month : month;
+            day = day < 10 ? '0' + day : day;
+
+            return `${month}-${day}-${year}`;
+        }
+        setnoticeDate(getDate())
+    },[])
 
     const student = async () => {
         if (!content, !subject) {
-            alert("please write down the notice")
+            alert("Please write down the notice")
         }
         else {
             const formData = new FormData();
             formData.append("Subject", subject)
             formData.append("Content", content)
             formData.append("Photo", Photo)
+            formData.append("noticeDate", noticeDate)
+
 
             let result = await axios.post(`${serverLink}/AdminNotice/notice`, formData, {
                 headers: {
@@ -31,10 +49,12 @@ const NoticeForm = () => {
             })
             result = result.data
             // setContent(result)
-            // console.log(result)
+            console.log(result)
+          
             alert("Your Notice has been send")
             setSubject('')
             setContent('')
+            setnoticeDate('')
         }
 
 
@@ -47,7 +67,11 @@ const NoticeForm = () => {
                 <h2>NOTICE</h2>
                 <Form >
                     <Form.Group controlId="formContent">
-                        <Form.Label className='sub'>Subject</Form.Label>
+                        <Container>
+                        <Row>
+                            <Col lg={2}></Col>
+                            <Col lg={4}>
+                            <Form.Label className='sub'>Subject</Form.Label>
                         <Form.Control
                         className='noticePage'
                             required
@@ -55,6 +79,23 @@ const NoticeForm = () => {
                             value={subject}
                             onChange={(e) => setSubject(e.target.value)}
                         />
+                            </Col>
+                            <Col lg={4}>
+                            <Form.Label className='sub'>Date</Form.Label>
+                        <Form.Control
+                        className='noticePage'
+                            required
+                            type='text'
+                            value={noticeDate}
+                            // onChange={(e) => setnoticeDate(e.target.value)}
+                        />
+                            </Col>
+                            <Col lg={2}></Col>
+                        </Row>
+                        </Container>
+                       
+                      
+                        
                         <Form.Control
                             className='textArea'
                             as="textarea"
