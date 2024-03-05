@@ -8,18 +8,19 @@
 }
 
 
-
+.back-arrow {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    color:black;
+  }
 .wapper .ms-auto
 {
     gap: 20px;
     font-size: 20px;
     color: #b71109;
 }
-.wapper .bg-body-tertiary
-{
-background-color: white !important;
 
-}
 
 .wapper .ms-auto button
 {
@@ -60,9 +61,11 @@ background-color: white !important;
     background-color: rgb(32 13 105) !important;
     /* height: auto; */
 
-    height: auto;
-
-    padding: 2px !important;
+    /* height: auto; */
+/* padding: 5px; */
+display: flex;
+align-items: center;
+    padding: 0px !important;
     text-align: center;
 }
 
@@ -120,6 +123,7 @@ background-color: white !important;
 .wapper-sec .m-auto a {
     color: black;
     text-decoration: none;
+    /* padding: 5px; */
 }
 
 
@@ -198,3 +202,8 @@ background-color: white !important;
 }
 
 }
+@media (max-width: 768px) {
+    .back-arrow {
+      padding: 5px;
+    }
+  }

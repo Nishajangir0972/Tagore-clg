@@ -1,17 +1,23 @@
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import { useLocation } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cap from '/src/component/Image/cap.png'
 import '../BCOM/Bcom.css'
+
 function FormExample() {
     const [validated, setValidated] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [location])
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -26,7 +32,7 @@ function FormExample() {
     return (
         <>
 
-           
+
             <div className="imageBcom">
                 <h1>BACHLOR'S OF COMMERCE </h1>
                 <h2>(B.COM)</h2>
@@ -82,9 +88,9 @@ function FormExample() {
                             <h4>B.Com - 2nd</h4>
                             <p>14785</p>
                         </Col>
-                       
+
                         <Col className='cols' lg={4}>
-                        <h4>B.Com - final</h4>
+                            <h4>B.Com - final</h4>
                             <p>14785</p>
                         </Col>
                     </Row>

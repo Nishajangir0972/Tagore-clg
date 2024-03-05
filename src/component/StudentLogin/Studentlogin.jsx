@@ -9,7 +9,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../../App';
-import {EyeInvisibleOutlined , EyeOutlined} from "@ant-design/icons"
+// import {EyeInvisibleOutlined , EyeOutlined} from "@ant-design/icons"
 
 
 function FormExample() {
@@ -19,6 +19,7 @@ function FormExample() {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [visible , setVisible] = useState(false)
+    const [passShow, setPassShow] = useState(false);
     const [agreeTerms, setAgreeTerms] = useState(false);
 
     const StudentLogin = async () => {
@@ -89,17 +90,18 @@ function FormExample() {
 
                         </Row>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="7" controlId="validationCustom05">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type={visible ? "text" : "password"}
+                        <Form.Label>Password</Form.Label>
+
+                            <Form.Group as={Col} md="7" controlId="validationCustom05" className='Input'>
+                                <Form.Control className='passInput' type={!passShow ? "password" : "text"}
                                  placeholder="Enter your Password" 
                                 value={password}
                                 onChange={(e)=> setPassword(e.target.value)}
                                 required 
                                 />
-                                 <div className="eyeicon" onClick={()=>{setVisible(!visible)}}>
-                                {visible ? <EyeOutlined/>:<EyeInvisibleOutlined/> }
-                              </div>
+                                 <div className="eyeicon" onClick={()=> setPassShow(!passShow)}>
+                                   {!passShow ? "Show" :"Hide"}
+                                </div>
                                 <Form.Control.Feedback type="invalid">
 
                                 </Form.Control.Feedback>

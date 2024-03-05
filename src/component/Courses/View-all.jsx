@@ -10,9 +10,15 @@ import Bcom from '../Image/bcom.jpg'
 import Ncc from '../Image/ncc-img.jpg'
 import Nss from '../Image/nss-img.jpg'
 import Scout from '../Image/scout-img.jpg'
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
  function View() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [location])
   return (
     <>
        <div className='courses'>

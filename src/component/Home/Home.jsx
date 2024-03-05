@@ -107,7 +107,7 @@ function Home() {
               </Col>
               <Col className='cols' lg={6} data-aos="zoom-in">
                 <Card style={{}}>
-                  <Card.Img variant="top" src={Director} />
+                  <Card.Img variant="top" src='./src/component/Image/Principal.jpeg' />
                   <Card.Body>
                     <Card.Title>Principle</Card.Title>
                     <Card.Text>

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { context } from '../../App';
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
+// import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
 
 
 function FormExample() {
@@ -21,6 +21,7 @@ function FormExample() {
     const [validated, setValidated] = useState(false);
     const [userName, setUsername] = useState()
     const [password, setPassword] = useState()
+    const [passShow, setPassShow] = useState(false);
     const [visible, setVisible] = useState(false)
     const [agreeTerms, setAgreeTerms] = useState(false);
 
@@ -99,20 +100,18 @@ function FormExample() {
                         <Row className="mb-3">
 
 
+                        <Form.Label>Password</Form.Label>
 
-                            <Form.Group as={Col} md="7" controlId="validationCustom02">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type={visible ? "text" : "password"}
+                            <Form.Group as={Col} md="7" controlId="validationCustom02" className='Input'>
+                                <Form.Control className='passInput' type={!passShow ? "password" : "text"}
                                     placeholder="Enter your Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required />
-                                <div className="eyeicon1" onClick={() => { setVisible(!visible) }}>
-                                    {visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                                <div className="eyeicon" onClick={()=> setPassShow(!passShow)}>
+                                   {!passShow ? "Show" :"Hide"}
                                 </div>
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a vaild password
-                                </Form.Control.Feedback>
+                                
                             </Form.Group>
 
 

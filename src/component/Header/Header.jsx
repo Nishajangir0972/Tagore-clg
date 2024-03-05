@@ -10,6 +10,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import { Link } from 'react-router-dom';
 import { context } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 
@@ -21,6 +23,7 @@ function Header() {
 
   const studentId = location.pathname.split("/")[2]
   const [studentName, setstudentName] = useState('')
+  const navigate = useNavigate();
 
   const { isAdminLoggedIn, setAdminLoggedIn, isStudentLoggedIn, setStudentLoggedIn } = useContext(context);
   const [show, setShow] = useState(false);
@@ -53,6 +56,10 @@ function Header() {
     setstudentName(result)
   }
 
+  const handleGoBack = () => {
+    navigate(-1);
+
+  };
   return (
     <>
       {
@@ -61,6 +68,9 @@ function Header() {
             <div className='second-navbar'>
               <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
+                <div className="back-arrow" onClick={handleGoBack}>
+                <ArrowBackIosIcon  color='orange'/>
+                </div>
                   <div className="name">
                     <div className="hin">
                       <h1>Hii!!!</h1>
@@ -114,7 +124,9 @@ function Header() {
             <div className='second-navbar'>
               <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-
+                <div className="back-arrow" onClick={handleGoBack}>
+                <ArrowBackIosIcon  color='orange'/>
+                </div>
                   <div className="name">
                     <div className="hin">
                       <h1>Hii!!!</h1>
@@ -163,11 +175,13 @@ function Header() {
 
       {!isAdminLoggedIn && !isStudentLoggedIn && (
           <>
-     
           <div className="mainnav">
             <div className="wapper sticky-navbar">
               <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
+                <div className="back-arrow" onClick={handleGoBack}>
+                <ArrowBackIosIcon  color='orange'/>
+                </div>
                   <Navbar.Brand href="#home"><img src={Logo} alt="" /></Navbar.Brand>
                   <div className="name">
                     <div className="hin">

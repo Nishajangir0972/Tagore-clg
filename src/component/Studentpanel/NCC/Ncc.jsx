@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import { useLocation } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Ncc from '/src/component/Image/Ncc-logo.jpeg'
 import '../NCC/Ncc.css'
 function FormExample() {
     const [validated, setValidated] = useState(false);
+    const location = useLocation();
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [location])
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;

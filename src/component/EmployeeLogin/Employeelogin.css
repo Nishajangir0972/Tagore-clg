@@ -5,9 +5,24 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-.eyeicon1 svg {
-    margin-top: -67px;
-    margin-left: 612px;
+.Input{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.eyeicon{
+    position: absolute;
+    right: 0;
+    /* top:1px; */
+    padding: 7px 10px;
+    margin-right: 13px;
+    /* margin-top: -1px; */
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a4365;
+    background-color: #EDF2F7;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .container.hadder{
     display: flex;
